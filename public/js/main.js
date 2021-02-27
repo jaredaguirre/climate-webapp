@@ -2,6 +2,10 @@ const search = document.getElementById('search');
 const results = document.getElementById('results');
 const button = document.getElementById('search-button');
 const found_info = document.getElementById('info-found');
+
+/*
+The following keys should not be written in this code, as this represents a security failure. 
+*/
 const MAPBOX_KEY = 'pk.eyJ1IjoiamFyZWRhZ3VpcnJlODIiLCJhIjoiY2tsZWw3ODEzMGZqZTJvcXBuM3FsMGtyNyJ9.NPsPY9Q_Uwez4K_uwj5cSw'
 const WEATHER_KEY = 'a3fae46261c6966cd2111d0b84d0aab0';
 
@@ -62,9 +66,8 @@ button.addEventListener('click', () => {
     //This will only proceed to action if there is any suggestions
     if (lista_sugerencias.length > 0 || search.value != '') {
 
-        //Buscamos el contenido de la barra 'search' en la lista de sug. actual
-        //Si esta, entonces ese es la informacion que se presenta.
-        //Si no esta, entonces ponemos el primer resultado de la lista de sug. actual.
+        //We use the search bar content to look for coincidences on the suggestion list
+        //If there is any, we use that coincidence to get data. If not, we intuit it's the first one
         let match_place = {};
         let given_place = {};
         match_place = lista_sugerencias.find((e) => e.place_name_es == search.value);
